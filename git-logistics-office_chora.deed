@@ -16,9 +16,9 @@
 ; field; scripts/deed-clause.sh is the one writer.
 (repo-deed
   :schema-version "1.0.0"
-  :canonical-name "rsr-template-repo"
+  :canonical-name "git-logistics-office"
   :beholding-chora #u5"estate/chora"
-  :repo-uuid #u5"github.com/hyperpolymath/rsr-template-repo"
+  :repo-uuid #u5"github.com/metadatastician/git-logistics-office"
   ; The canon pin: which release of hyperpolymath/standards canon.lock this
   ; repo implements. It is the ONLY canon pin in this deed (deed_canon
   ; refuses zero or two); the (rsr-profile) clause below declares
@@ -168,7 +168,7 @@
     (methodology :instructions-clause "bot-directives" :default-mode hybrid))
   (manifest
     :version "0.1.0"
-    :last-updated "{{CURRENT_DATE}}"
+    :last-updated "2026-11-27"
     :project "[YOUR-REPO-NAME]"
     :purpose "Canonical RSR (Rhodium Standard Repository) template — governance, CI/CD, machine-readable metadata, ABI/FFI seam and formal-verification scaffolding that hyperpolymath projects are instantiated from."
     (agent :name CLAUDE :role "proofs, compilers, repo-local implementation, CI/CD, formal verification, Rust/Idris2/Zig")
@@ -184,8 +184,8 @@
   (ply
     (directory :ply 1 :path ".github")
     (directory :id "machine-readable-pillar" :ply 1 :path ".machine_readable" :description "Registry for all machine-readable metadata, policies, and internal\nautomation scripts."
-      (canonical-locations :ai_configs "ai/" :anchor "rsr-template-repo_chora.deed (anchor)" :compliance "compliance/" :neurosym "rsr-template-repo_chora.deed (neurosym)" :playbook "rsr-template-repo_chora.deed (playbook)" :policies "rsr-template-repo_chora.deed (policies)" :scripts "scripts/")
-      :invariants ("Repo metadata MUST live in the repo deed (rsr-template-repo_chora.deed) and follow the DEED grammar" "Internal automation MUST live in scripts/ subfolder")
+      (canonical-locations :ai_configs "ai/" :anchor "git-logistics-office_chora.deed (anchor)" :compliance "compliance/" :neurosym "git-logistics-office_chora.deed (neurosym)" :playbook "git-logistics-office_chora.deed (playbook)" :policies "git-logistics-office_chora.deed (policies)" :scripts "scripts/")
+      :invariants ("Repo metadata MUST live in the repo deed (git-logistics-office_chora.deed) and follow the DEED grammar" "Internal automation MUST live in scripts/ subfolder")
       (directory :id "ai-registry" :ply 2 :path ".machine_readable/ai" :description "Sub-registry for ai metadata.")
       (directory :id "configs-registry" :ply 2 :path ".machine_readable/configs" :description "Sub-registry for configs metadata.")
       (directory :ply 0 :path ".machine_readable/descriptiles" :description "This manifest declares the AI-assistant context for the descriptiles machine-readable metadata directory."
@@ -307,7 +307,7 @@
   ; and the golden path. The CLAUDE.md arrival pack reads anchor/golden-path and hashes this clause (ANCHOR@…).
   (anchor
     :schema "hyperpolymath.anchor/1"
-    :repo "{{OWNER}}/{{REPO}}"
+    :repo "metadatastician/git-logistics-office"
     :authority "upstream-canonical"
     :purpose (
       "Define canonical semantics and policy boundaries for this repository."
@@ -316,12 +316,12 @@
       )
     (metadata
       :version "1.0.0"
-      :last-updated "{{CURRENT_DATE}}")
+      :last-updated "2026-11-27")
     (identity
-      :project "{{PROJECT_NAME}}"
+      :project "git-logistics-office"
       ; language | library | service | tool
       :kind "{{PROJECT_KIND}}"
-      :one-sentence "{{PROJECT_PURPOSE}}"
+      :one-sentence "Constraint-pruned Git estate logistics planning, safe dispatch, fleet orchestration, and traceable recall"
       :domain "{{PROJECT_DOMAIN}}")
     (semantic-authority
       :policy "canonical"
@@ -477,7 +477,7 @@
     (methodology
       (metadata
         :version "1.0.0"
-        :last-updated "{{CURRENT_DATE}}"
+        :last-updated "2026-11-27"
         :spec "https://github.com/hyperpolymath/standards/blob/main/1-formats/a2ml/agentic/docs/ADR-002-methodology-layer.adoc")
       ; ============================================================================
       ; MODE SELECTION
@@ -560,7 +560,7 @@
         ; These rules detect corrupt/template/stale state files.
         (state-validation
           ; A regex, not a literal list. The list form named the exact strings it was
-          ; meant to catch ("{{PROJECT}}"), so `just repo-init` substituted the detector along
+          ; meant to catch ("GIT_LOGISTICS_OFFICE"), so `just repo-init` substituted the detector along
           ; with everything else and shipped reject-if-contains = ["MY_PROJECT", ...] —
           ; a guard against unfilled tokens that had been eaten by the filling. The
           ; escaped pattern below contains no token for init to match, and covers every
@@ -579,7 +579,7 @@
     (coverage
       (metadata
         :version "1.0.0"
-        :last-updated "{{CURRENT_DATE}}")
+        :last-updated "2026-11-27")
       ; ============================================================================
       ; COVERAGE STATE
       ; ============================================================================
@@ -597,7 +597,7 @@
     (debt
       (metadata
         :version "1.0.0"
-        :last-updated "{{CURRENT_DATE}}"))
+        :last-updated "2026-11-27"))
     ; rra — directives for Robot Repo Automaton (RRA) enforcing the Platonic Ideal root.
     (rra
       :target "robot-repo-automaton"
@@ -612,7 +612,7 @@
         ; The pattern ".*" allows hidden dotfiles implicitly; RRA checks specific
         ; dotfile rules below.
         (allow-list
-          :files ("README.adoc" "CHANGELOG.adoc" "Justfile" "LICENSE" "rsr-template-repo_chora.deed" "CITATION.cff" "CLAUDE.md")
+          :files ("README.adoc" "CHANGELOG.adoc" "Justfile" "LICENSE" "git-logistics-office_chora.deed" "CITATION.cff" "CLAUDE.md")
           :patterns (".*"))
         ; Relocation rules: move heavy prose out of the root
         (relocations
@@ -710,8 +710,8 @@
     ; See: https://github.com/hyperpolymath/standards/tree/main/groove-protocol
     (groove
       :version "1.0"
-      ; Service identity — replace {{REPO}} with your project name
-      :service "{{REPO}}"
+      ; Service identity — replace git-logistics-office with your project name
+      :service "git-logistics-office"
       :service-version "0.1.0"
       ; Primary port — MUST be unique across the ecosystem. Check PORT-REGISTRY.md
       ; in the standards repo before assigning:
@@ -740,7 +740,7 @@
     (maintenance-axes
       (metadata
         :version "1.0.0"
-        :last-updated "{{CURRENT_DATE}}"
+        :last-updated "2026-11-27"
         :scope "repo")
       (discovery
         :human-entrypoints (
