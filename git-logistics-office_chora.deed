@@ -18,7 +18,7 @@
   :schema-version "1.0.0"
   :canonical-name "git-logistics-office"
   :beholding-chora #u5"estate/chora"
-  :repo-uuid #uuid"5ac791b9-710d-800c-8986-cdd2058f2033"
+  :repo-uuid #u5"github.com/metadatastician/git-logistics-office"
   ; The canon pin: which release of hyperpolymath/standards canon.lock this
   ; repo implements. It is the ONLY canon pin in this deed (deed_canon
   ; refuses zero or two); the (rsr-profile) clause below declares
