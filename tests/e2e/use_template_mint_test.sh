@@ -360,9 +360,18 @@ field() { bash "$C/scripts/deed-field.sh" "$DEED" "$@"; }
 [ "$(field variant parent-pin)" = "$T_COMMIT" ]         || fail "variant parent-pin is $(field variant parent-pin), want $T_COMMIT"
 if grep -qF "$C_HEAD" "$DEED"; then fail "the deed records the child's own commit $C_HEAD"; fi
 pass "(a) provenance and variant name template commit ${T_COMMIT:0:12} and its tree, never the child's HEAD"
-grep -qF -- "$DESC" "$C/README.adoc" \
-    || { grep -n 'Tools' "$C/README.adoc" >&2; fail 'the description did not render literally'; }
-pass "an answer containing & and | renders literally"
+# A minted repo carries real values (owner ruling 2026-11-27), so this repo's
+# README holds no {{PROJECT_DESCRIPTION}} token to render. Check the README
+# render only when the template still has the token; the deed check further
+# down (mint-answers :description) covers the literal & and | round trip.
+if grep -qF '{{PROJECT_DESCRIPTION}}' "$T/README.adoc"; then
+    grep -qF -- "$DESC" "$C/README.adoc" \
+        || { grep -n 'Tools' "$C/README.adoc" >&2; fail 'the description did not render literally'; }
+    pass "an answer containing & and | renders literally"
+else
+    if grep -qF '{{PROJECT_DESCRIPTION}}' "$C/README.adoc"; then fail 'the mint left a description token in the README'; fi
+    pass "README has no description token to render (filled repo); mint left none behind"
+fi
 
 # ── (b) the fixture tests are carried unchanged, and pass in the child ──────
 while IFS= read -r v; do
